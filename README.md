@@ -29,7 +29,7 @@
    ```
 3. Build and start the services:
    ```sh
-   docker-compose up --build
+   docker compose up --build
    ```
 4. The application should now be running and accessible at
 
