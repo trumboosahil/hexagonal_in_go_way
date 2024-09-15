@@ -24,7 +24,7 @@
    1. Ensure Docker and Docker Compose are installed on your machine.
    2. Clone the repository:
       ```sh
-      git clone git@github-personal:trumboosahil/hexagonal_in_go_way.git
+      git clone git@github.com:trumboosahil/hexagonal_in_go_way.git
       cd hexagonal_in_go_way
       ```
    3. Build and start the services:
