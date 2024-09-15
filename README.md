@@ -32,7 +32,8 @@
       docker-compose up --build
       ```
    4. The application should now be running and accessible at 
-```curl curl -X POST http://localhost:8080/orders \
+```curl
+curl  -X POST http://localhost:8080/orders \
 -H "Content-Type: application/json" \
 -d '{
   "ID": "999234",
