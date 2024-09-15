@@ -41,8 +41,9 @@ services:
     build:
       context: .
     environment:
-      - STORAGE_TYPE=postgres
+      - STORAGE_TYPE=redis
       - POSTGRES_CONNECTION_STRING=postgres://user:password@postgres:5432/mydb?sslmode=disable
+      - REDIS_CONNECTION_STRING=redis://redis:6379
     ports:
       - "8080:8080"
     depends_on:

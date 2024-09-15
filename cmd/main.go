@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"hexagonal_in_go_way/internal/adapters/driven/postgres"
 	"hexagonal_in_go_way/internal/adapters/driven/redispkg"
 	"hexagonal_in_go_way/internal/adapters/driving/http"
@@ -35,10 +36,25 @@ func main() {
 		orderRepo = postgres.NewOrderRepository(db)
 
 	case "redis":
-		redisClient := redis.NewClient(&redis.Options{
-			Addr: "localhost:6379",
-		})
-		orderRepo = redispkg.NewOrderRepository(redisClient)
+		var rdb *redis.Client
+		connStr := os.Getenv("REDIS_CONNECTION_STRING")
+		if connStr == "" {
+			connStr = "redis://redis:6379"
+		}
+		opt, err := redis.ParseURL(connStr)
+		if err != nil {
+			log.Fatalf("Failed to parse Redis URL: %v", err)
+		}
+		rdb = redis.NewClient(opt)
+		defer rdb.Close()
+
+		// Verify the connection
+		ctx := context.Background()
+		_, err = rdb.Ping(ctx).Result()
+		if err != nil {
+			log.Fatalf("Failed to connect to Redis: %v", err)
+		}
+		orderRepo = redispkg.NewOrderRepository(rdb)
 
 	default:
 		log.Fatalf("Unsupported storage type: %s", storageType)
