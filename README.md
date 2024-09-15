@@ -31,14 +31,20 @@
       ```sh
       docker-compose up --build
       ```
-   4. The application should now be running and accessible at `http://localhost:8080`.
+   4. The application should now be running and accessible at `curl -X POST http://localhost:8080/orders \
+-H "Content-Type: application/json" \
+-d '{
+  "ID": "999234",
+  "Amount": 150.50,
+  "Status": "Pending"
+}'`.
 
    ### Running Locally
 
    1. Ensure Go is installed on your machine.
    2. Clone the repository:
       ```sh
-      git clone git@github-personal:trumboosahil/hexagonal_in_go_way.git
+      git clone git@github.com:trumboosahil/hexagonal_in_go_way.git
       cd hexagonal_in_go_way
       ```
    3. Set up the environment variables:
