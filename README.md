@@ -31,13 +31,15 @@
       ```sh
       docker-compose up --build
       ```
-   4. The application should now be running and accessible at `curl -X POST http://localhost:8080/orders \
+   4. The application should now be running and accessible at 
+```curl -X POST http://localhost:8080/orders \
 -H "Content-Type: application/json" \
 -d '{
   "ID": "999234",
   "Amount": 150.50,
   "Status": "Pending"
-}'`.
+}'
+```
 
    ### Running Locally
 
